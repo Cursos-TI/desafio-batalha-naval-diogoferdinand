@@ -4,6 +4,9 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
 
+#define LIN 3
+#define COL 5
+
 int main() {
     // Nível Novato - Posicionamento dos Navios
     // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
@@ -35,6 +38,80 @@ int main() {
     // 0 0 1 0 0
     // 1 1 1 1 1
     // 0 0 1 0 0
+
+    int i, j;
+
+    int cone[LIN][COL] = {0,0,0,0,0,
+                         0,0,0,0,0,
+                         0,0,0,0,0};
+
+    int octa[3][5] = {0,0,0,0,0,
+                         0,0,0,0,0,
+                         0,0,0,0,0};
+
+    int cruz[3][5]= {0,0,0,0,0,
+                         0,0,0,0,0,
+                         0,0,0,0,0};
+
+    // --- CONE ---
+    for (i = 0; i < LIN; i++) {
+        for (j = 0; j < COL; j++) {
+            if (j >= 2 - i && j <= 2 + i) {
+                cone[i][j] = 1;
+            }
+        }
+    }
+
+    // --- OCTAEDRO ---
+
+    for (i = 0; i < LIN; i++) {
+        for (j = 0; j < COL; j++) {
+            if ( (i == 0 && j == 2) ||
+                 (i == 1 && j >= 1 && j <= 3) ||
+                 (i == 2 && j == 2) ) {
+                octa[i][j] = 1;
+            }
+        }
+    }
+
+    // --- CRUZ ---
+    for (i = 0; i < LIN; i++) {
+        for (j = 0; j < COL; j++) {
+            if (i == 1 || j == 2) {
+                cruz[i][j] = 1;
+            }
+        }
+    }
+
+    // --- Impressão ---
+    printf("Exibindo Cone:\n");
+    for (i = 0; i < LIN; i++) {
+        for (j = 0; j < COL; j++) {
+            printf("%d ", cone[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+
+    printf("Exibindo Octaedro:\n");
+    for (i = 0; i < LIN; i++) {
+        for (j = 0; j < COL; j++) {
+            printf("%d ", octa[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+
+    printf("Exibindo Cruz:\n");
+    for (i = 0; i < LIN; i++) {
+        for (j = 0; j < COL; j++) {
+            printf("%d ", cruz[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+
+    
 
     return 0;
 }
